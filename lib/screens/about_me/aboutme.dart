@@ -27,48 +27,40 @@ class AboutMe extends StatelessWidget {
         Text(
             'Hi, my name is Shrutika Tatkare, and I have a deep passion for creating mobile apps. Even in my busy schedule, I find joy in exploring innovative ideas that enhance user experiences. My journey in mobile app development began in 2017 when I decided to dive into building engaging and impactful applications.\n\nFast-forward to today, I\'ve had the privilege of working at Apptware Solutions LLP, a startup where I focused on designing and developing powerful mobile applications. My goal is to craft apps that not only look great but also deliver seamless performance, ensuring an exceptional user experience.',
             textAlign: width > 800 ? TextAlign.justify : TextAlign.start,
-            style: TextStyle(
-                fontWeight: FontWeight.w200,
-                fontStyle: FontStyle.italic,
-                fontSize: 14.spMax)),
+            style: Theme.of(context).textTheme.bodyMedium!.copyWith(
+                fontWeight: FontWeight.w200, fontStyle: FontStyle.italic)),
         SizedBox(
           height: 20.h,
         ),
         RichText(
             text: TextSpan(children: [
           TextSpan(
-              text: 'I build ',
-              style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 14.spMax,
-                  fontFamily: Constants().fontFamily)),
+              text: 'I build ', style: Theme.of(context).textTheme.bodyMedium),
           WidgetSpan(
               alignment: PlaceholderAlignment.middle,
-              child: AnimatedTextKit(
-                repeatForever: true,
-                animatedTexts: [
+              child: AnimatedTextKit(repeatForever: true, animatedTexts: [
                 TyperAnimatedText('awesome flutter apps',
-                    textStyle: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14.spMax,
-                        fontFamily: Constants().fontFamily)),
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        !.copyWith(color: Theme.of(context).primaryColor)),
                 TyperAnimatedText('progressive web apps',
-                    textStyle: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14.spMax,
-                        fontFamily: Constants().fontFamily)),
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        !.copyWith(color: Theme.of(context).primaryColor)),
                 TyperAnimatedText('awesome android apps',
-                    textStyle: TextStyle(
-                        color: primaryColor,
-                        fontSize: 14.spMax,
-                        fontFamily: Constants().fontFamily)),
+                    textStyle: Theme.of(context)
+                        .textTheme
+                        .bodyMedium
+                        !.copyWith(color: Theme.of(context).primaryColor)),
               ])),
         ])),
         SizedBox(
           height: 20.h,
         ),
         Text('Here are a few technologies I\'ve been working with recently :',
-            style: TextStyle(fontSize: 14.spMax)),
+            style: Theme.of(context).textTheme.bodyMedium),
         SizedBox(
           height: 20.h,
         ),
@@ -80,9 +72,9 @@ class AboutMe extends StatelessWidget {
             return Row(
               children: [
                 Icon(Icons.arrow_forward_ios,
-                    size: 14.spMax, color: primaryColor),
+                    size: 14.spMax, color: Theme.of(context).primaryColor),
                 SizedBox(width: 8.w),
-                Text(skill, style: TextStyle(fontSize: 14.spMax)),
+                Text(skill, style: Theme.of(context).textTheme.bodyMedium),
               ],
             );
           }).toList(),
@@ -120,7 +112,7 @@ class MyPhoto extends StatelessWidget {
                         height: constraint.maxWidth > 1024 ? 300.h : 200.h,
                         width: constraint.maxWidth > 1024 ? 300.h : 200.h,
                         decoration: BoxDecoration(
-                            border: Border.all(color: primaryColor),
+                            border: Border.all(color: Theme.of(context).primaryColor),
                             borderRadius: BorderRadius.circular(10.r)),
                       ),
                     ),
@@ -138,7 +130,7 @@ class MyPhoto extends StatelessWidget {
                             color: state is OpacityAdded
                                 ? null
                                 // ignore: deprecated_member_use
-                                : primaryColor.withOpacity(0.8),
+                                : Theme.of(context).primaryColor.withOpacity(0.8),
                             colorBlendMode: BlendMode.hue,
                             filterQuality: FilterQuality.low,
                           ),

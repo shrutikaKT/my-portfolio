@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart' as animate;
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -14,7 +15,8 @@ class MyExperiance extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    PageController pageController = PageController(initialPage: 0); // Page controller for the PageView
+    PageController pageController =
+        PageController(initialPage: 0); // Page controller for the PageView
 
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       SectionHeadingWidget(
@@ -25,7 +27,7 @@ class MyExperiance extends StatelessWidget {
         height: 100.h,
       ),
       SizedBox(
-        height: 250.h,
+        height: 350.h,
         child: BlocBuilder<ExperianceBloc, ExperianceState>(
           builder: (context, state) {
             int currentPageIndex = 0;
@@ -63,23 +65,44 @@ class MyExperiance extends StatelessWidget {
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 Text(
-                                  Constants().experiances[currentPageIndex]['overview']!,
+                                  Constants().experiances[currentPageIndex]
+                                      ['overview']!,
                                   textAlign: TextAlign.justify,
-                                  style: TextStyle(fontSize: 12.spMax),
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 SizedBox(
                                   height: 30.h,
                                 ),
-                                Text(
-                                  Constants().experiances[currentPageIndex]['designation']!,
-                                  style: TextStyle(color: primaryColor, fontSize: 12.spMax),
+                                 Text(
+                                  Constants().experiances[currentPageIndex]
+                                      ['company']!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color:
+                                              Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
                                   height: 10.h,
                                 ),
                                 Text(
-                                  Constants().experiances[currentPageIndex]['year']!,
-                                  style: TextStyle(fontSize: 12.spMax),
+                                  Constants().experiances[currentPageIndex]
+                                      ['designation']!,
+                                  style: Theme.of(context)
+                                      .textTheme
+                                      .bodyMedium!
+                                      .copyWith(
+                                          color:
+                                              Theme.of(context).primaryColor),
+                                ),
+                                SizedBox(
+                                  height: 10.h,
+                                ),
+                                Text(
+                                  Constants().experiances[currentPageIndex]
+                                      ['year']!,
+                                  style: Theme.of(context).textTheme.bodyMedium,
                                 )
                               ],
                             ),
@@ -110,7 +133,9 @@ class MyExperiance extends StatelessWidget {
                     duration: Duration(milliseconds: 300),
                     curve: Curves.easeInOut,
                   );
-                  context.read<ExperianceBloc>().add(ChangePageIndex(index)); // Update the Bloc state
+                  context
+                      .read<ExperianceBloc>()
+                      .add(ChangePageIndex(index)); // Update the Bloc state
                 },
                 controller: pageController,
                 count: Constants().experiances.length,
@@ -120,13 +145,15 @@ class MyExperiance extends StatelessWidget {
                   radius: 8.0,
                   dotWidth: 5.0,
                   dotHeight: 5.0,
-                  dotColor: Colors.white70,
-                  activeDotColor: primaryColor,
+                  dotColor: initialTheme == AdaptiveThemeMode.dark
+                      ? Colors.white70
+                      : Colors.blueGrey,
+                  activeDotColor: Theme.of(context).primaryColor,
                 ),
               ).animate().scale(
-                duration: Duration(milliseconds: 500),
-                curve: Curves.easeInOut,
-              ),
+                    duration: Duration(milliseconds: 500),
+                    curve: Curves.easeInOut,
+                  ),
             );
           },
         ),

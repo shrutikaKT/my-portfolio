@@ -19,14 +19,12 @@ class RightBottomSection extends StatelessWidget {
                   child: Center(
                       child: Text(
                     'tatkare99shruti@gmail.com',
-                    style: TextStyle(color: Colors.white70),
                   )))),
         ),
         SizedBox(
             height: 150.h,
             child: VerticalDivider(
               thickness: 0.5,
-              color: Colors.grey,
             ))
       ],
     );

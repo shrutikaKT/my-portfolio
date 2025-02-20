@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -116,32 +117,44 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   children: [
                                     Text(
                                       'Hi, my name is',
-                                      style: TextStyle(
-                                          fontSize: 20.spMax,
-                                          color: primaryColor),
+                                      style: Theme.of(context)
+                                          .textTheme
+                                          .titleSmall!
+                                          .copyWith(
+                                              color: Theme.of(context)
+                                                  .primaryColor),
                                     ),
                                     SizedBox(
                                       height: 10.h,
                                     ),
-                                    AnimatedTextKit(animatedTexts: [
-                                      TypewriterAnimatedText(
-                                        'Shrutika Tatkare',
-                                        speed: Duration(milliseconds: 200),
-                                        textStyle: TextStyle(
-                                            fontSize: 48.spMax,
-                                            fontWeight: FontWeight.bold),
-                                      )
-                                    ]),
+                                    AnimatedTextKit(
+                                        repeatForever: true,
+                                        animatedTexts: [
+                                          TypewriterAnimatedText(
+                                            'Shrutika Tatkare',
+                                            speed: Duration(milliseconds: 200),
+                                            textStyle: Theme.of(context)
+                                                .textTheme
+                                                .displayLarge!
+                                                .copyWith(
+                                                    fontWeight:
+                                                        FontWeight.bold),
+                                          )
+                                        ]),
                                     SizedBox(
                                       height: 10.h,
                                     ),
                                     ConstrainedBox(
                                       constraints: BoxConstraints(
-                                          maxWidth: constraints.maxWidth / 2),
+                                          maxWidth: width > 800
+                                              ? constraints.maxWidth / 2
+                                              : constraints.maxWidth),
                                       child: Text(
                                         'With over 7 years of experience in mobile app development, I specialize in building high-quality applications, particularly using Flutter. I have a strong background in both technical execution and leadership, effectively managing teams and ensuring timely project delivery.',
                                         textAlign: TextAlign.justify,
-                                        style: TextStyle(fontSize: 14.spMax),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .bodyMedium,
                                       ),
                                     ),
                                     SizedBox(
@@ -285,8 +298,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         Center(
                                             child: Text(
                                           'shrutika.tatkare@apptware.com',
-                                          style:
-                                              TextStyle(color: Colors.white70),
                                         )),
                                         SizedBox(
                                           height: 10.h,

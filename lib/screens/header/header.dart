@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -5,8 +6,6 @@ import 'package:portfolio/main.dart';
 import 'package:portfolio/screens/dashboard/bloc/dashboard_bloc.dart';
 import 'package:portfolio/screens/header/bloc/header_bloc.dart';
 import 'package:portfolio/utils/constants.dart';
-
-import '../../widgets/common_button/common_button.dart';
 
 class HeaderWidget extends StatelessWidget {
   const HeaderWidget({super.key});
@@ -18,28 +17,62 @@ class HeaderWidget extends StatelessWidget {
           key: headerKey,
           body: LayoutBuilder(builder: (context, constraints) {
             return Container(
-              margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-              child: Column(children: [
-                Row(
-                  spacing: 20.w,
-                  children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      height: 100.h,
-                    ),
-                    CommonButton(
-                      title: 'CV',
-                    ),
-                    Spacer(),
-                    if (constraints.maxWidth > 800) ...{
-                      WebheaderWidget()
-                    } else ...{
-                      MobileHeaderWidget()
-                    }
-                  ],
-                ),
-              ]),
-            );
+                margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+                child: Column(children: [
+                  Row(
+                    spacing: 20.w,
+                    children: [
+                      BlocBuilder<HeaderBloc, HeaderState>(
+                        builder: (context, state) {
+                          print(state);
+                          return ElevatedButton.icon(
+                            icon: Icon(
+                              state is DarkModeActivated
+                                  ? Icons.light_mode
+                                  : Icons.dark_mode,
+                              color: state is DarkModeActivated
+                                  ? Colors.black
+                                  : Colors.white,
+                            ),
+                            label: Text(
+                              state is DarkModeActivated
+                                  ? "Light Mode"
+                                  : "Dark Mode",
+                              style: TextStyle(
+                                color: state is DarkModeActivated
+                                    ? Colors.black
+                                    : Colors.white,
+                              ),
+                            ),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: state is DarkModeActivated
+                                  ? Colors.amber
+                                  : Colors.grey[800], // Filled button color
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
+                              textStyle: TextStyle(
+                                  fontSize: 16, fontWeight: FontWeight.bold),
+                            ),
+                            onPressed: () {
+                              if (state is DarkModeActivated) {
+                                AdaptiveTheme.of(context).setLight();
+                              } else {
+                                AdaptiveTheme.of(context).setDark();
+                              }
+                              context.read<HeaderBloc>().add(GetThemeMode());
+                            },
+                          );
+                        },
+                      ),
+                      Spacer(),
+                      if (constraints.maxWidth > 800) ...{
+                        WebheaderWidget()
+                      } else ...{
+                        MobileHeaderWidget()
+                      }
+                    ],
+                  ),
+                ]));
           }));
     });
   }
@@ -85,7 +118,7 @@ class WebheaderWidget extends StatelessWidget {
                       EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
                   child: Text(
                     item,
-                    style: TextStyle(fontSize: 14.spMax),
+                    style: Theme.of(context).textTheme.bodyMedium,
                   )),
             ),
           )
@@ -159,7 +192,7 @@ class DrawerList extends StatelessWidget {
             child: Text(
               Constants().headerList[index],
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 14.spMax),
+              style: Theme.of(context).textTheme.bodyMedium,
             ),
           ),
         );

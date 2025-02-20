@@ -9,4 +9,9 @@ final class MenuLoaded extends HeaderState {}
 
 final class MenuClosed extends HeaderState {}
 
+final class LightModeActivated extends HeaderState {}
+
+final class DarkModeActivated extends HeaderState {}
+
+
 

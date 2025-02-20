@@ -38,7 +38,6 @@ class LeftBottomSection extends StatelessWidget {
               height: 150.h,
               child: VerticalDivider(
                 thickness: 0.5,
-                color: Colors.grey,
               ))
         ],
       ),

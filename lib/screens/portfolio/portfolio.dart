@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -54,6 +55,7 @@ class _PortfolioState extends State<Portfolio> with TickerProviderStateMixin {
               ),
               ListView.builder(
                   shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
                   padding: EdgeInsets.only(bottom: 40.w),
                   itemCount: Constants().projects.length,
                   itemBuilder: (context, index) {
@@ -246,14 +248,20 @@ class ProjectDetails extends StatelessWidget {
         children: [
           Text(
             'Featured Project',
-            style: TextStyle(color: primaryColor, fontSize: 12.spMax),
+            style: Theme.of(context)
+                .textTheme
+                .bodySmall
+                !.copyWith(color: Theme.of(context).primaryColor),
           ),
           SizedBox(
             height: 5.h,
           ),
           Text(
             Constants().projects[index]['name'],
-            style: TextStyle(fontSize: 16.spMax, fontWeight: FontWeight.bold),
+            style: Theme.of(context)
+                .textTheme
+                .bodyLarge
+                !.copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 10.h,
@@ -269,12 +277,14 @@ class ProjectDetails extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 5.h),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
                 decoration: BoxDecoration(
-                    color: const Color.fromARGB(255, 12, 42, 57),
+                    color: initialTheme == AdaptiveThemeMode.dark
+                        ? const Color.fromARGB(255, 12, 42, 57)
+                        : const Color.fromARGB(255, 248, 173, 210),
                     borderRadius: BorderRadius.circular(10.r)),
                 child: Text(
                   Constants().projects[index]['description'],
-                  style: TextStyle(
-                      fontWeight: FontWeight.w100, fontSize: 12.spMax),
+                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                      fontWeight: FontWeight.w100),
                 )),
           ),
           Wrap(
@@ -284,14 +294,18 @@ class ProjectDetails extends StatelessWidget {
               padding: EdgeInsets.symmetric(horizontal: 8.w),
               child: Text(
                 "•$item",
-                style: TextStyle(fontSize: 12.spMax),
+                style: Theme.of(context).textTheme.bodySmall,
               ),
             );
           }).toList()),
           SizedBox(
             height: 10.h,
           ),
-          Icon(Icons.attachment)
+          InkWell( 
+            onTap: (){
+              launchURL(Constants().projects[index]['link']);
+            },
+            child: Icon(Icons.attachment))
         ],
       );
     });

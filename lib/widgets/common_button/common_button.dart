@@ -16,7 +16,7 @@ class CommonButton extends StatelessWidget {
             ),
         child: Text(
           title,
-          style: TextStyle( fontSize: 12.spMax),
+          style: Theme.of(context).textTheme.bodySmall,
         ));
   }
 }

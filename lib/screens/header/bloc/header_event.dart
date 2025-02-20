@@ -9,3 +9,7 @@ class SideMenuOpen extends HeaderEvent {}
 
 class SideMenuClose extends HeaderEvent {}
 
+class GetThemeMode extends HeaderEvent {
+  GetThemeMode();
+}
+

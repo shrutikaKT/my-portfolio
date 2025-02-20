@@ -5,7 +5,8 @@ import 'package:portfolio/main.dart';
 class SectionHeadingWidget extends StatelessWidget {
   final String title;
   final int num;
-  const SectionHeadingWidget({super.key, required this.title, required this.num});
+  const SectionHeadingWidget(
+      {super.key, required this.title, required this.num});
 
   @override
   Widget build(BuildContext context) {
@@ -15,17 +16,22 @@ class SectionHeadingWidget extends StatelessWidget {
         children: [
           Text(
             "0$num.",
-            style: TextStyle(color: primaryColor, fontWeight: FontWeight.w100, fontSize: 22.spMax),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(color: Theme.of(context).primaryColor, fontWeight: FontWeight.w100),
           ),
           Text(
             title,
-            style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22.spMax),
+            style: Theme.of(context)
+                .textTheme
+                .titleMedium!
+                .copyWith(fontWeight: FontWeight.bold),
           ),
           Expanded(
             child: Divider(
               height: 10.h,
               thickness: 0.5.r,
-              color: Colors.grey,
               endIndent: 100.w,
             ),
           )

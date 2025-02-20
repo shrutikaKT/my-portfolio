@@ -8,18 +8,21 @@ class Constants {
     {
       'overview':
           'Supervised junior developers, developed mobile app features, integrated third-party libraries (payment gateways, Firebase, SDKs), and managed theming and flavors. Led R&D for new features, ensured app stability with testing, code reviews, and CI/CD. Provided feature estimations, integrated services like speech-to-text, and handled payment gateway integrations.',
+      'company':'Apptware Solutions LLP',
       'designation': 'Lead Mobile Developer',
       'year': 'July 2020 - Present'
     },
     {
       'overview':
           'Led the team in bug fixing, maintained deadlines, and handled full front-to-back development using Firebase and Firestore. Managed Firebase hosting and function deployment, integrated One Signal API for push notifications across platforms, and published Android and iOS apps on respective stores.',
+            'company':'Eiosys Pvt Ltd',
       'designation': 'Hybrid Mobile App Developer',
       'year': 'April 2018 - May 2020'
     },
     {
       'overview':
           'Implemented REST API services for CRUD operations, developed native Android apps using Android Studio, and connected the frontend to the database via PHP. Worked on mobile UI and functionality, gained hands-on experience with MongoDB, and utilized Facebook and Google APIs. Also, proficient in JavaScript, TypeScript, and Angular.',
+            'company':'Wisdom Sprouts',
       'designation': 'Software Developer',
       'year': 'March 2017 - Febuary 2018'
     }
