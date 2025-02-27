@@ -10,7 +10,7 @@ import 'package:portfolio/screens/header/bloc/header_bloc.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/routes.dart';
 
-const initialTheme = AdaptiveThemeMode.light;
+const initialTheme = AdaptiveThemeMode.dark;
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -20,19 +20,13 @@ void main() {
   });
 }
 
-// final Color primaryColor = initialTheme == AdaptiveThemeMode.dark
-//     ? Color(0xFF68FFDB)
-//     : Color(0XFF3B1C32);
-// final Color secondaryColor = initialTheme == AdaptiveThemeMode.dark
-//     ? Color(0xFFEAE2C6)
-//     : Color(0XFFA64D79);
-
 GlobalKey aboutmeKey = GlobalKey();
 GlobalKey experianceKey = GlobalKey();
 GlobalKey portfolioKey = GlobalKey();
 GlobalKey contactKey = GlobalKey();
 GlobalKey helloKey = GlobalKey();
 GlobalKey headerKey = GlobalKey();
+GlobalKey mobileHeaderKey = GlobalKey();
 
 class App extends StatelessWidget {
   final AdaptiveThemeMode initialTheme;
@@ -91,15 +85,6 @@ final Color secondaryColor = Color(0xFFEAE2C6);
               TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
           headlineSmall: TextStyle(color: Colors.white60),
         ),
-        // elevatedButtonTheme: ElevatedButtonThemeData(
-        //   style: ElevatedButton.styleFrom(
-        //     backgroundColor: primaryColor,
-        //     foregroundColor: Colors.black,
-        //     textStyle: TextStyle(color: Colors.black),
-        //     shape:
-        //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
-        //   ),
-        // ),
         filledButtonTheme: FilledButtonThemeData(
             style: FilledButton.styleFrom(
           backgroundColor: primaryColor,
@@ -155,12 +140,6 @@ final Color secondaryColor =  Color(0XFFA64D79);
               TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
           headlineSmall: TextStyle(color: Colors.black87),
         ),
-        // elevatedButtonTheme: ElevatedButtonThemeData(
-        //   style: ElevatedButton.styleFrom(
-        //     backgroundColor: primaryColor,
-        //     foregroundColor: Colors.white,
-        //   ),
-        // ),
         filledButtonTheme: FilledButtonThemeData(
             style: FilledButton.styleFrom(
           backgroundColor: primaryColor,

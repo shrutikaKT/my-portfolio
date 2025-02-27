@@ -24,7 +24,6 @@ class HeaderWidget extends StatelessWidget {
                     children: [
                       BlocBuilder<HeaderBloc, HeaderState>(
                         builder: (context, state) {
-                          print(state);
                           return ElevatedButton.icon(
                             icon: Icon(
                               state is DarkModeActivated
@@ -132,7 +131,9 @@ class MobileHeaderWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
+    return Column(
+      key: mobileHeaderKey,
+      children: [
       BlocBuilder<HeaderBloc, HeaderState>(builder: (context, state) {
         return IconButton.outlined(
             onPressed: () {
@@ -143,6 +144,9 @@ class MobileHeaderWidget extends StatelessWidget {
                 context.read<HeaderBloc>().add(SideMenuClose());
               } else {
                 context.read<HeaderBloc>().add(SideMenuOpen());
+                 context
+                        .read<DashboardBloc>()
+                        .add(ScrollToWidgetEvent(mobileHeaderKey));
               }
             },
             icon: Icon(
