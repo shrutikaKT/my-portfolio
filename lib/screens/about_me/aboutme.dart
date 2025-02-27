@@ -2,7 +2,6 @@ import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/main.dart';
 import 'package:portfolio/screens/about_me/bloc/about_bloc.dart';
 
 import '../../utils/constants.dart';

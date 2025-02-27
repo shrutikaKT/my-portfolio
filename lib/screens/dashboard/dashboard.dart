@@ -1,5 +1,4 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -7,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/main.dart';
 import 'package:portfolio/screens/dashboard/bloc/dashboard_bloc.dart';
 import 'package:portfolio/screens/header/header.dart';
+import 'package:portfolio/utils/functions.dart';
 import 'package:portfolio/widgets/left_bottom_section/left_bottom_section.dart';
 import 'package:portfolio/widgets/right_bottom_section/right_bottom_section.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -164,7 +164,9 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                       child: OutlinedButton(
                                           style: OutlinedButton.styleFrom(
                                               padding: EdgeInsets.all(25)),
-                                          onPressed: () {},
+                                          onPressed: () {
+                                            launchURL("tel://7057110312");
+                                          },
                                           child: Text('Let\'s Connect')),
                                     )
                                   ]),

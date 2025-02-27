@@ -24,10 +24,23 @@ class MyExperiance extends StatelessWidget {
         num: 02,
       ),
       SizedBox(
-        height: 100.h,
+        height: 80.h,
+      ),
+      Padding(
+        padding: EdgeInsets.only(left: 60.w),
+        child: Text(
+          "Responsibilities",
+          style: Theme.of(context)
+              .textTheme
+              .bodyMedium!
+              .copyWith(color: Theme.of(context).primaryColor),
+        ),
       ),
       SizedBox(
-        height: 350.h,
+        height: 10.h,
+      ),
+      SizedBox(
+        height: 400.h,
         child: BlocBuilder<ExperianceBloc, ExperianceState>(
           builder: (context, state) {
             int currentPageIndex = 0;
@@ -67,21 +80,21 @@ class MyExperiance extends StatelessWidget {
                                 Text(
                                   Constants().experiances[currentPageIndex]
                                       ['overview']!,
-                                  textAlign: TextAlign.justify,
+                                  // textAlign: TextAlign.justify,
                                   style: Theme.of(context).textTheme.bodyMedium,
                                 ),
                                 SizedBox(
                                   height: 30.h,
                                 ),
-                                 Text(
+                                Text(
                                   Constants().experiances[currentPageIndex]
                                       ['company']!,
                                   style: Theme.of(context)
                                       .textTheme
                                       .bodyMedium!
                                       .copyWith(
-                                          color:
-                                              Theme.of(context).primaryColor, fontWeight: FontWeight.bold),
+                                          color: Theme.of(context).primaryColor,
+                                          fontWeight: FontWeight.bold),
                                 ),
                                 SizedBox(
                                   height: 10.h,

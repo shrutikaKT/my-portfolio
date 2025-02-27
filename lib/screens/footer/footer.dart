@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/main.dart';
+import 'package:portfolio/utils/functions.dart';
 
 class Footer extends StatelessWidget {
   const Footer({super.key});
@@ -30,7 +30,9 @@ class Footer extends StatelessWidget {
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(height: 20.h),
-        OutlinedButton(onPressed: () {}, child: Text('Say Hello'))
+        OutlinedButton(onPressed: () {
+          launchURL("https://wa.me/917057110312");
+        }, child: Text('Say Hello'))
       ],
     );
   }

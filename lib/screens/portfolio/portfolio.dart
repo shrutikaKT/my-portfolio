@@ -1,9 +1,7 @@
-import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:portfolio/main.dart';
 import 'package:portfolio/screens/portfolio/bloc/portfolio_bloc.dart';
 import 'package:portfolio/utils/constants.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -250,8 +248,8 @@ class ProjectDetails extends StatelessWidget {
             'Featured Project',
             style: Theme.of(context)
                 .textTheme
-                .bodySmall
-                !.copyWith(color: Theme.of(context).primaryColor),
+                .bodySmall!
+                .copyWith(color: Theme.of(context).primaryColor),
           ),
           SizedBox(
             height: 5.h,
@@ -260,8 +258,8 @@ class ProjectDetails extends StatelessWidget {
             Constants().projects[index]['name'],
             style: Theme.of(context)
                 .textTheme
-                .bodyLarge
-                !.copyWith(fontWeight: FontWeight.bold),
+                .bodyLarge!
+                .copyWith(fontWeight: FontWeight.bold),
           ),
           SizedBox(
             height: 10.h,
@@ -277,14 +275,14 @@ class ProjectDetails extends StatelessWidget {
                 margin: EdgeInsets.symmetric(vertical: 5.h),
                 padding: EdgeInsets.symmetric(horizontal: 20.w, vertical: 30.h),
                 decoration: BoxDecoration(
-                    color: initialTheme == AdaptiveThemeMode.dark
-                        ? const Color.fromARGB(255, 12, 42, 57)
-                        : const Color.fromARGB(255, 248, 173, 210),
+                    color: Color(0xFF5F9EA0),
                     borderRadius: BorderRadius.circular(10.r)),
                 child: Text(
                   Constants().projects[index]['description'],
-                  style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      fontWeight: FontWeight.w100),
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodySmall!
+                      .copyWith(fontWeight: FontWeight.w100),
                 )),
           ),
           Wrap(
@@ -301,11 +299,11 @@ class ProjectDetails extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          InkWell( 
-            onTap: (){
-              launchURL(Constants().projects[index]['link']);
-            },
-            child: Icon(Icons.attachment))
+          InkWell(
+              onTap: () {
+                launchURL(Constants().projects[index]['link']);
+              },
+              child: Icon(Icons.attachment))
         ],
       );
     });
