@@ -29,7 +29,7 @@ class MyExperiance extends StatelessWidget {
       Padding(
         padding: EdgeInsets.only(left: 60.w),
         child: Text(
-          "Responsibilities",
+          Constants().responsibilies,
           style: Theme.of(context)
               .textTheme
               .bodyMedium!

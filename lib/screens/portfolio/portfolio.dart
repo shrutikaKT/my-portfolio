@@ -245,7 +245,7 @@ class ProjectDetails extends StatelessWidget {
             !!isOdd(index) ? MainAxisAlignment.start : MainAxisAlignment.end,
         children: [
           Text(
-            'Featured Project',
+            Constants().projectKey,
             style: Theme.of(context)
                 .textTheme
                 .bodySmall!

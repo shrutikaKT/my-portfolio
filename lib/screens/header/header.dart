@@ -31,7 +31,9 @@ class HeaderWidget extends StatelessWidget {
                             : Colors.white,
                       ),
                       label: Text(
-                        state is DarkModeActivated ? "Light Mode" : "Dark Mode",
+                        state is DarkModeActivated
+                            ? Constants().lightMode
+                            : Constants().darkMode,
                         style: TextStyle(
                           color: state is DarkModeActivated
                               ? Colors.black

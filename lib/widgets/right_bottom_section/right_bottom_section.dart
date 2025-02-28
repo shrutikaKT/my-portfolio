@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/utils/constants.dart';
 
 class RightBottomSection extends StatelessWidget {
   const RightBottomSection({super.key});
@@ -18,7 +19,7 @@ class RightBottomSection extends StatelessWidget {
                   height: 100.h,
                   child: Center(
                       child: Text(
-                    'tatkare99shruti@gmail.com',
+                    Constants().email,
                   )))),
         ),
         SizedBox(

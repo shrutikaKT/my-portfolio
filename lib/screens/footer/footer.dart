@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/functions.dart';
 
 class Footer extends StatelessWidget {
@@ -10,7 +11,7 @@ class Footer extends StatelessWidget {
     return Column(
       children: [
         Text(
-          '04. What\'s Next?',
+          Constants().footerTitle,
           style: Theme.of(context)
               .textTheme
               .bodyMedium
@@ -18,7 +19,7 @@ class Footer extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         Text(
-          'Get In Touch',
+          Constants().touch,
           style: Theme.of(context)
               .textTheme
               .titleLarge

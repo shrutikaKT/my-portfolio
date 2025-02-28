@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:portfolio/main.dart';
 import 'package:portfolio/screens/dashboard/bloc/dashboard_bloc.dart';
 import 'package:portfolio/screens/header/header.dart';
+import 'package:portfolio/utils/constants.dart';
 import 'package:portfolio/utils/functions.dart';
 import 'package:portfolio/widgets/left_bottom_section/left_bottom_section.dart';
 import 'package:portfolio/widgets/right_bottom_section/right_bottom_section.dart';
@@ -110,7 +111,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                   crossAxisAlignment: CrossAxisAlignment.start,
                                   children: [
                                     Text(
-                                      'Hi, my name is',
+                                      Constants().myName,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleSmall!
@@ -125,7 +126,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         repeatForever: true,
                                         animatedTexts: [
                                           TypewriterAnimatedText(
-                                            'Shrutika Tatkare',
+                                            Constants().me,
                                             speed: Duration(milliseconds: 200),
                                             textStyle: Theme.of(context)
                                                 .textTheme
@@ -144,7 +145,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                               ? constraints.maxWidth / 2
                                               : constraints.maxWidth),
                                       child: Text(
-                                        'With over 7+ years of experience in mobile app development, I specialize in building high-quality applications, particularly using Flutter Framework. I have a strong background in both technical execution and leadership, effectively managing teams and ensuring timely project delivery.',
+                                        Constants().mydetails,
                                         textAlign: TextAlign.justify,
                                         style: Theme.of(context)
                                             .textTheme
@@ -161,7 +162,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                           onPressed: () {
                                             launchURL("tel://7057110312");
                                           },
-                                          child: Text('Let\'s Connect')),
+                                          child: Text(Constants().connect)),
                                     )
                                   ]),
                               SizedBox(
@@ -293,7 +294,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         ),
                                         Center(
                                             child: Text(
-                                          'tatkare99shruti@gmail.com',
+                                          Constants().email,
                                         )),
                                         SizedBox(
                                           height: 10.h,

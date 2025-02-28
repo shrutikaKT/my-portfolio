@@ -4,6 +4,24 @@ class Constants {
   final List headerList = ['Hello', 'About', 'Experiance', 'Portfolio'];
   final String fontFamily = 'JetBrainsMono';
   final List<String> skills = ['Flutter Web', 'Firebase', 'CI/CD Setup'];
+  final String email = 'tatkare99shruti@gmail.com';
+  final String projectKey = 'Featured Project';
+  final String lightMode = 'Light Mode';
+  final String darkMode = 'Dark Mode';
+  final String responsibilies = 'Responsibilities';
+  final String footerTitle = '04. What\'s Next?';
+  final String connect = 'Let\'s Connect';
+  final String touch = 'Get In Touch';
+  final String mydetails =
+      'With over 7+ years of experience in mobile app development, I specialize in building high-quality applications, particularly using Flutter Framework. I have a strong background in both technical execution and leadership, effectively managing teams and ensuring timely project delivery.';
+  final String aboutme = 'About Me';
+  final String myName = 'Hi, my name is';
+  final String me = 'Shrutika Tatkare';
+  final String builds = 'I build ';
+  final String skillsList =
+      'Here are a few technologies I\'ve been working with recently :';
+  final String intro =
+      'Hi, my name is Shrutika Tatkare, and I have a deep passion for creating mobile apps. Even in my busy schedule, I find joy in exploring innovative ideas that enhance user experiences. My journey in mobile app development began in 2017 when I decided to dive into building engaging and impactful applications.\n\nFast-forward to today, I\'ve had the privilege of working at Apptware Solutions LLP, a startup where I focused on designing and developing powerful mobile applications. My goal is to craft apps that not only look great but also deliver seamless performance, ensuring an exceptional user experience.';
   final List<Map<String, String>> experiances = [
     {
       'overview':
