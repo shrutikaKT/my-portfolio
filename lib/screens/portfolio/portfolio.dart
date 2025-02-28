@@ -299,11 +299,14 @@ class ProjectDetails extends StatelessWidget {
           SizedBox(
             height: 10.h,
           ),
-          InkWell(
-              onTap: () {
-                launchURL(Constants().projects[index]['link']);
-              },
-              child: Icon(Icons.attachment))
+          Visibility(
+            visible: !Constants().projects[index]['link'].isEmpty,
+            child: InkWell(
+                onTap: () {
+                  launchURL(Constants().projects[index]['link']);
+                },
+                child: Icon(Icons.attachment)),
+          )
         ],
       );
     });

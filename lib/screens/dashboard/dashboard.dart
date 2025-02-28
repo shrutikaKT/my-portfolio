@@ -65,6 +65,8 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
     _experianceAnimationController.forward();
   }
 
+  OverlayEntry? overlayEntry;
+
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
@@ -86,7 +88,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
             child: LayoutBuilder(builder: (context, constraints) {
               return Scaffold(
                 appBar: const PreferredSize(
-                    preferredSize: Size.fromHeight(120), child: HeaderWidget()),
+                    preferredSize: Size.fromHeight(75), child: HeaderWidget()),
                 body: Stack(
                   children: [
                     Padding(
@@ -100,14 +102,6 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              BlocBuilder<HeaderBloc, HeaderState>(
-                                  builder: (context, state) {
-                                if (state is MenuOpened) {
-                                  return Center(child: DrawerList());
-                                } else {
-                                  return Container();
-                                }
-                              }),
                               SizedBox(
                                 height: width > 800 ? 200.h : 60.h,
                               ),
@@ -150,7 +144,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                               ? constraints.maxWidth / 2
                                               : constraints.maxWidth),
                                       child: Text(
-                                        'With over 7 years of experience in mobile app development, I specialize in building high-quality applications, particularly using Flutter. I have a strong background in both technical execution and leadership, effectively managing teams and ensuring timely project delivery.',
+                                        'With over 7+ years of experience in mobile app development, I specialize in building high-quality applications, particularly using Flutter Framework. I have a strong background in both technical execution and leadership, effectively managing teams and ensuring timely project delivery.',
                                         textAlign: TextAlign.justify,
                                         style: Theme.of(context)
                                             .textTheme
@@ -299,7 +293,7 @@ class _DashboardState extends State<Dashboard> with TickerProviderStateMixin {
                                         ),
                                         Center(
                                             child: Text(
-                                          'shrutika.tatkare@apptware.com',
+                                          'tatkare99shruti@gmail.com',
                                         )),
                                         SizedBox(
                                           height: 10.h,

@@ -26,7 +26,6 @@ GlobalKey portfolioKey = GlobalKey();
 GlobalKey contactKey = GlobalKey();
 GlobalKey helloKey = GlobalKey();
 GlobalKey headerKey = GlobalKey();
-GlobalKey mobileHeaderKey = GlobalKey();
 
 class App extends StatelessWidget {
   final AdaptiveThemeMode initialTheme;

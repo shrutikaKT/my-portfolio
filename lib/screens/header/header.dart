@@ -13,66 +13,61 @@ class HeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return LayoutBuilder(builder: (context, constraints) {
-      return Scaffold(
-          key: headerKey,
-          body: LayoutBuilder(builder: (context, constraints) {
-            return Container(
-                margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
-                child: Column(children: [
-                  Row(
-                    spacing: 20.w,
-                    children: [
-                      BlocBuilder<HeaderBloc, HeaderState>(
-                        builder: (context, state) {
-                          return ElevatedButton.icon(
-                            icon: Icon(
-                              state is DarkModeActivated
-                                  ? Icons.light_mode
-                                  : Icons.dark_mode,
-                              color: state is DarkModeActivated
-                                  ? Colors.black
-                                  : Colors.white,
-                            ),
-                            label: Text(
-                              state is DarkModeActivated
-                                  ? "Light Mode"
-                                  : "Dark Mode",
-                              style: TextStyle(
-                                color: state is DarkModeActivated
-                                    ? Colors.black
-                                    : Colors.white,
-                              ),
-                            ),
-                            style: ElevatedButton.styleFrom(
-                              backgroundColor: state is DarkModeActivated
-                                  ? Colors.amber
-                                  : Colors.grey[800], // Filled button color
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 20, vertical: 12),
-                              textStyle: TextStyle(
-                                  fontSize: 16, fontWeight: FontWeight.bold),
-                            ),
-                            onPressed: () {
-                              if (state is DarkModeActivated) {
-                                AdaptiveTheme.of(context).setLight();
-                              } else {
-                                AdaptiveTheme.of(context).setDark();
-                              }
-                              context.read<HeaderBloc>().add(GetThemeMode());
-                            },
-                          );
-                        },
+      return Container(
+          margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 20.h),
+          child: Column(children: [
+            Row(
+              spacing: 20.w,
+              children: [
+                BlocBuilder<HeaderBloc, HeaderState>(
+                  builder: (context, state) {
+                    return ElevatedButton.icon(
+                      icon: Icon(
+                        state is DarkModeActivated
+                            ? Icons.light_mode
+                            : Icons.dark_mode,
+                        color: state is DarkModeActivated
+                            ? Colors.black
+                            : Colors.white,
                       ),
-                      Spacer(),
-                      if (constraints.maxWidth > 800) ...{
-                        WebheaderWidget()
-                      } else ...{
-                        MobileHeaderWidget()
-                      }
-                    ],
-                  ),
-                ]));
-          }));
+                      label: Text(
+                        state is DarkModeActivated ? "Light Mode" : "Dark Mode",
+                        style: TextStyle(
+                          color: state is DarkModeActivated
+                              ? Colors.black
+                              : Colors.white,
+                        ),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: state is DarkModeActivated
+                            ? Colors.amber
+                            : Colors.grey[800], // Filled button color
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                        textStyle: TextStyle(
+                            fontSize: 16, fontWeight: FontWeight.bold),
+                      ),
+                      onPressed: () {
+                        if (state is DarkModeActivated) {
+                          AdaptiveTheme.of(context).setLight();
+                        } else {
+                          AdaptiveTheme.of(context).setDark();
+                        }
+                        context.read<HeaderBloc>().add(GetThemeMode());
+                      },
+                    );
+                  },
+                ),
+                if (constraints.maxWidth > 800) ...{
+                  Spacer(),
+                  WebheaderWidget()
+                } else ...{
+                  Spacer(),
+                  MobileHeaderWidget()
+                }
+              ],
+            ),
+          ]));
     });
   }
 }
@@ -126,27 +121,50 @@ class WebheaderWidget extends StatelessWidget {
   }
 }
 
+OverlayEntry? overlayEntry;
+
 class MobileHeaderWidget extends StatelessWidget {
   const MobileHeaderWidget({super.key});
 
+  void showOverlay(BuildContext parentContext) {
+    final overlayState = Overlay.of(parentContext);
+
+    overlayEntry = OverlayEntry(
+      builder: (context) => Positioned.fill(
+          child: IgnorePointer(
+              ignoring: false, // Set to false to allow interactions
+              child: Stack(children: [
+                DrawerList(
+                  parentContext: parentContext,
+                  hideWidget: () {
+                    hideOverlay();
+                    parentContext.read<HeaderBloc>().add(SideMenuClose());
+                  },
+                )
+              ]))),
+    );
+
+    overlayState.insert(overlayEntry!);
+  }
+
+  hideOverlay() {
+    overlayEntry?.remove();
+    overlayEntry = null;
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Column(
-      key: mobileHeaderKey,
-      children: [
+    return Column(children: [
       BlocBuilder<HeaderBloc, HeaderState>(builder: (context, state) {
+        print(state);
         return IconButton.outlined(
             onPressed: () {
               if (state is MenuOpened) {
-                context
-                    .read<DashboardBloc>()
-                    .add(ScrollToWidgetEvent(headerKey));
+                hideOverlay();
                 context.read<HeaderBloc>().add(SideMenuClose());
               } else {
+                showOverlay(context);
                 context.read<HeaderBloc>().add(SideMenuOpen());
-                 context
-                        .read<DashboardBloc>()
-                        .add(ScrollToWidgetEvent(mobileHeaderKey));
               }
             },
             icon: Icon(
@@ -157,50 +175,65 @@ class MobileHeaderWidget extends StatelessWidget {
 }
 
 class DrawerList extends StatelessWidget {
-  const DrawerList({super.key});
+  const DrawerList(
+      {required this.parentContext, required this.hideWidget, super.key});
+  final BuildContext parentContext;
+  final Function hideWidget;
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      shrinkWrap: true,
-      itemCount: Constants().headerList.length,
-      itemBuilder: (context, index) {
-        return InkWell(
-          onTap: () {
-            switch (Constants().headerList[index]) {
-              case 'Hello':
-                context
-                    .read<DashboardBloc>()
-                    .add(ScrollToWidgetEvent(helloKey));
-                break;
-              case 'About':
-                context
-                    .read<DashboardBloc>()
-                    .add(ScrollToWidgetEvent(aboutmeKey));
-                break;
-              case 'Experiance':
-                context
-                    .read<DashboardBloc>()
-                    .add(ScrollToWidgetEvent(experianceKey));
-                break;
-              case 'Portfolio':
-                context
-                    .read<DashboardBloc>()
-                    .add(ScrollToWidgetEvent(portfolioKey));
-                break;
-              default:
-            }
+    return Material(
+      color: Theme.of(context).scaffoldBackgroundColor,
+      child: Container(
+        margin: EdgeInsets.only(top: 80.h),
+        child: ListView.builder(
+          shrinkWrap: true,
+          key: PageStorageKey("overlay_list"), // Preserve scroll position
+          itemCount: Constants().headerList.length,
+          itemBuilder: (context, index) {
+            return Material(
+              color: Theme.of(context).scaffoldBackgroundColor,
+              child: InkWell(
+                onTap: () {
+                  switch (Constants().headerList[index]) {
+                    case 'Hello':
+                      parentContext
+                          .read<DashboardBloc>()
+                          .add(ScrollToWidgetEvent(helloKey));
+                      break;
+                    case 'About':
+                      parentContext
+                          .read<DashboardBloc>()
+                          .add(ScrollToWidgetEvent(aboutmeKey));
+                      break;
+                    case 'Experiance':
+                      parentContext
+                          .read<DashboardBloc>()
+                          .add(ScrollToWidgetEvent(experianceKey));
+                      break;
+                    case 'Portfolio':
+                      parentContext
+                          .read<DashboardBloc>()
+                          .add(ScrollToWidgetEvent(portfolioKey));
+                      break;
+                    default:
+                  }
+                  hideWidget();
+                },
+                child: Container(
+                  margin:
+                      EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
+                  child: Text(
+                    Constants().headerList[index],
+                    textAlign: TextAlign.center,
+                    style: Theme.of(context).textTheme.bodyMedium,
+                  ),
+                ),
+              ),
+            );
           },
-          child: Container(
-            margin: EdgeInsets.symmetric(horizontal: 20.w, vertical: 10.h),
-            child: Text(
-              Constants().headerList[index],
-              textAlign: TextAlign.center,
-              style: Theme.of(context).textTheme.bodyMedium,
-            ),
-          ),
-        );
-      },
+        ),
+      ),
     );
   }
 }

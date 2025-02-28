@@ -6,9 +6,14 @@ part 'header_state.dart';
 
 class HeaderBloc extends Bloc<HeaderEvent, HeaderState> {
   HeaderBloc() : super(MenuClosed()) {
+    initializeTheme();
     on<SideMenuOpen>(openMenu);
     on<SideMenuClose>(closeMenu);
     on<GetThemeMode>(changeMode);
+  }
+
+  void initializeTheme() {
+    emit(DarkModeActivated());
   }
 
   openMenu(SideMenuOpen event, Emitter<HeaderState> emit) {

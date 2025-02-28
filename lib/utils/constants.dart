@@ -3,11 +3,11 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 class Constants {
   final List headerList = ['Hello', 'About', 'Experiance', 'Portfolio'];
   final String fontFamily = 'JetBrainsMono';
-  final List<String> skills = ['Flutter', 'Firebase', 'Ionic Framework'];
+  final List<String> skills = ['Flutter Web', 'Firebase', 'CI/CD Setup'];
   final List<Map<String, String>> experiances = [
     {
       'overview':
-          '-> Supervised flutter junior developers\n-> developed mobile app features\n-> integrated third-party libraries (payment gateways, Firebase, SDKs)\n-> Ensured app stability with testing, code reviews, and CI/CD\n-> Provided feature estimations',
+          '-> Supervised flutter junior developers\n-> developed mobile app features\n-> integrated third-party libraries (payment gateways, Firebase, SDKs)\n-> Ensured app stability with testing, code reviews, and CI/CD\n-> Ability to provide best solution for the services using impactful tools such as LaunchDarkly, Amplitude etc.',
       'company': 'Apptware Solutions LLP',
       'designation': 'Lead Mobile Developer',
       'year': 'July 2020 - Present'
@@ -40,7 +40,7 @@ class Constants {
       'name': 'Devaseva',
       'description':
           'Devaseva is one of the most trusted online Puja platforms of India that helps devotees connect with the divine digitally, book online Sevas and get them conducted in a hassle-free manner. You can also enjoy other benefits like you can book seva for your loved ones for blessings, you can watch live telecast, prasad delivery at your doorstep, read interesting news on feeds, donation can be done.',
-      'tech': ['Flutter', 'Firebase'],
+      'tech': ['Flutter', 'Firebase', 'Web Socket'],
       'link': 'https://play.google.com/store/apps/details?id=com.devaseva.app',
       'image': 'assets/images/project2.png'
     },
@@ -48,7 +48,7 @@ class Constants {
       'name': 'Apptmart : E-com product',
       'description':
           'This is an e-commerce product by Apptware, designed to make app development easy for e-commerce businesses. Customers can simply request an app, provide some basic details, and the app is automatically generated and ready for publication — all without writing any additional code. The mobile app is fully dynamic, designed, and developed to meet the specific needs of e-commerce businesses.',
-      'tech': ['Flutter', 'Firebase'],
+      'tech': ['Flutter', 'Payment Gateways', 'Hive'],
       'link': '',
       'image': 'assets/images/project3.png'
     }
