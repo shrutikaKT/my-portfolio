@@ -1,17 +1,61 @@
-# portfolio
+# Flutter Portfolio Website
 
-A new Flutter project.
+This is a **Flutter-based portfolio website** showcasing projects, skills, and experience.
 
-## Getting Started
+## 🚀 Features
+- Responsive design for **desktop, tablet, and mobile**
+- Dark and light mode support
+- Interactive UI with animations
+- Smooth scrolling navigation
+- Hosted on **Vercel**
 
-This project is a starting point for a Flutter application.
+## 📦 Tech Stack
+- **Flutter Web**
+- **Dart**
+- **Bloc (State Management)**
+- **Vercel (Deployment)**
 
-A few resources to get you started if this is your first Flutter project:
+## 🔧 Installation
+1. **Clone the repository:**
+   ```sh
+   git clone https://github.com/yourusername/flutter-portfolio.git
+   cd flutter-portfolio
+   ```
+2. **Install dependencies:**
+   ```sh
+   flutter pub get
+   ```
+3. **Run the app locally:**
+   ```sh
+   flutter run -d chrome
+   ```
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## 🌍 Deployment on Vercel
+1. **Install Vercel CLI:**
+   ```sh
+   npm install -g vercel
+   ```
+2. **Login to Vercel:**
+   ```sh
+   vercel login
+   ```
+3. **Build the Flutter project:**
+   ```sh
+   flutter build web
+   ```
+4. **Deploy to Vercel:**
+   ```sh
+   vercel --prod
+   ```
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
-# portfolio
+## 🛠 Customization
+- Modify content in **lib/utils/constants** (if structured that way)
+- Update **theme settings** in `app.dart`
+
+## 📜 License
+This project is **open-source** under the MIT License. Feel free to fork and customize! 🎨✨
+
+---
+
+📧 Need help? Reach out at [tatkare99shruti@gmail.com] or connect on [https://www.linkedin.com/in/shrutika-tatkare-ab7b27147/].
+
