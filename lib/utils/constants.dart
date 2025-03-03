@@ -1,7 +1,7 @@
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 class Constants {
-  final List headerList = ['Hello', 'About', 'Experiance', 'Portfolio'];
+  final List headerList = ['Hello', 'About', 'Experience', 'Portfolio'];
   final String fontFamily = 'JetBrainsMono';
   final List<String> skills = ['Flutter Web', 'Firebase', 'CI/CD Setup'];
   final String email = 'tatkare99shruti@gmail.com';

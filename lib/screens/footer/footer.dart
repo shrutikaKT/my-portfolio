@@ -27,7 +27,7 @@ class Footer extends StatelessWidget {
         ),
         SizedBox(height: 10.h),
         Text(
-          'Although I\'m not currently looking for new opportunities, my inbox is always open. Whether you have a question or just want to say hi, I\'ll try my best to get you as soon as possible.',
+          'Have a project in mind? Let’s discuss how I can help turn it into reality! Whether you have a question or just want to say hi, I\'ll try my best to get you as soon as possible.',
           style: Theme.of(context).textTheme.bodyMedium,
         ),
         SizedBox(height: 20.h),

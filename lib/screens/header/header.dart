@@ -96,7 +96,7 @@ class WebheaderWidget extends StatelessWidget {
                         .read<DashboardBloc>()
                         .add(ScrollToWidgetEvent(aboutmeKey));
                     break;
-                  case 'Experiance':
+                  case 'Experience':
                     context
                         .read<DashboardBloc>()
                         .add(ScrollToWidgetEvent(experianceKey));
@@ -208,7 +208,7 @@ class DrawerList extends StatelessWidget {
                           .read<DashboardBloc>()
                           .add(ScrollToWidgetEvent(aboutmeKey));
                       break;
-                    case 'Experiance':
+                    case 'Experience':
                       parentContext
                           .read<DashboardBloc>()
                           .add(ScrollToWidgetEvent(experianceKey));
