@@ -133,6 +133,7 @@ class MyPhoto extends StatelessWidget {
                                 // ignore: deprecated_member_use
                                 : Theme.of(context)
                                     .primaryColor
+                                    // ignore: deprecated_member_use
                                     .withOpacity(0.8),
                             colorBlendMode: BlendMode.hue,
                             filterQuality: FilterQuality.low,

@@ -13,6 +13,7 @@ class HeaderBloc extends Bloc<HeaderEvent, HeaderState> {
   }
 
   void initializeTheme() {
+    // ignore: invalid_use_of_visible_for_testing_member
     emit(DarkModeActivated());
   }
 
