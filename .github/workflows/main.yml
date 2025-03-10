@@ -30,7 +30,7 @@ jobs :
       - uses: subosito/flutter-action@v3
         with:
           # Runs a single command using the runner’s shell
-          flutter-version: "3.6.0"
+          # flutter-version: "3.6.0"
           channel: 'stable'
           cache : true
       - name: Analyze flutter builld
