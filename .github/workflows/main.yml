@@ -16,7 +16,7 @@ jobs :
   # Contains the type of runner that the job will run on
   build :
     # Uses steps to represent a sequence of tasks that will be executed as part of job
-    runs-on: macos-latest
+    runs-on: macos-14
 
     # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
     steps :
