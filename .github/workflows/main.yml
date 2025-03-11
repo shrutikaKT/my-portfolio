@@ -21,15 +21,15 @@ jobs :
     # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
     steps :
       # Sets up Java so your job can use it for the Flutter app build
-      - uses : actions/checkout@v3
+      - uses : actions/checkout@v4
       # Sets up Flutter using the subosito Flutter workflow
-      - uses : actions/setup-java@v3
+      - uses : actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: "17"
           cache: 'gradle'
       # Adjusts to the Flutter version you are working with
-      - uses: subosito/flutter-action@v3
+      - uses: subosito/flutter-action@v2
         with:
           # Runs a single command using the runner’s shell
           # flutter-version: "3.6.0"
@@ -45,7 +45,7 @@ jobs :
       - name: Start release build
         run: flutter build apk --release
       - name: Upload build artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: release-appbundle
           path: build/app/outputs/bundle/release/app-release.apk
