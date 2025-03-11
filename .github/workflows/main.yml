@@ -36,7 +36,7 @@ jobs :
           channel: 'stable'
           cache : true
       - name: Analyze flutter builld
-        run: flutter Analyze
+        run: flutter analyze
       - name: Clean build artifacts
         run: flutter clean
       - name: Get dependencies
