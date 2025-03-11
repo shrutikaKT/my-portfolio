@@ -1,37 +1,34 @@
-name : Android Release
+name : Releases
 
 # Controls when the workflow will run
 on :
   # Triggers the workflow on push or pull request events for the "main" branch
   push :
-    branches : ["main"]
-  pull_request:
-    branches : ["main"]
+    branches :
+    ["main"]
 
   #Allows you to run this workflow manually from the Actions tab from your GitHub repo
   workflow_dispatch:
 
-# Contains a single job called build
+# Contains a multiple jobs
 jobs :
-  # Contains the type of runner that the job will run on
-  android-build :
-    # Uses steps to represent a sequence of tasks that will be executed as part of job
-    runs-on: macos-14
 
-    # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
+  flutter-build :
+      # Contains the type of runner that the job will run on
+    runs-on: macos-14
+      # Uses steps to represent a sequence of tasks that will be executed as part of job
     steps :
-      # Sets up Java so your job can use it for the Flutter app build
+      # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses : actions/checkout@v4
-      # Sets up Flutter using the subosito Flutter workflow
+      # Sets up Java so your job can use it for the Flutter app build
       - uses : actions/setup-java@v4
         with:
           distribution: 'zulu'
           java-version: "17"
           cache: 'gradle'
-      # Adjusts to the Flutter version you are working with
+      # Sets up Flutter using the subosito Flutter workflow
       - uses: subosito/flutter-action@v2
         with:
-          # Runs a single command using the runner’s shell
           # flutter-version: "3.6.0"
           channel: 'stable'
           cache : true
@@ -44,44 +41,53 @@ jobs :
         # fetch dependancies
       - name: Get dependencies
         run: flutter pub get
-        # Build release APK for android using artifact
+
+  # build & deploy for android
+  android-build-deploy :
+    # Uses steps to represent a sequence of tasks that will be executed as part of job
+    runs-on: macos-14
+    needs: flutter-build
+    # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
+    steps :
+      # Sets up Java so your job can use it for the Flutter app build
+      - uses : actions/checkout@v4
+        # Decode keystore file
+      # - name: Decode Keystore File
+      #   run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > android/app/upload-keystore.jks
+
+      # - name: Configure Keystore Properties
+      #   run: |
+      #     echo "storePassword=${{ secrets.KEYSTORE_PASSWORD }}" > android/key.properties
+      #     echo "keyPassword=${{ secrets.KEY_PASSWORD }}" >> android/key.properties
+      #     echo "keyAlias=${{ secrets.KEY_ALIAS }}" >> android/key.properties
+      #     echo "storeFile=upload-keystore.jks" >> android/key.properties
+      # build APK
       - name: Start release build
         run: flutter build apk --release
+      # upload artifact
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-appbundle
           path: build/app/outputs/flutter-apk/app-release.apk
+      # Deploy on Google Play
+      # - name: Deploy to Google Play (Internal Track)
+      #   uses: r0adkll/upload-google-play@v1
+      #   with:
+      #     serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_JSON_KEY }}
+      #     packageName: com.example.app  # Replace with your app's package name
+      #     releaseFiles: build/app/outputs/bundle/release/app-release.aab
+      #     track: internal
+      #     status: completed
 
-
+  # build & deploy for web
   web-build-deploy:
     runs-on: macos-14
+    needs: flutter-build
 
     steps :
-      # Sets up Java so your job can use it for the Flutter app build
+        # Sets up Java so your job can use it for the Flutter app build
       - uses : actions/checkout@v4
-      # Sets up Flutter using the subosito Flutter workflow
-      - uses : actions/setup-java@v4
-        with:
-          distribution: 'zulu'
-          java-version: "17"
-          cache: 'gradle'
-      # Adjusts to the Flutter version you are working with
-      - uses: subosito/flutter-action@v2
-        with:
-          # Runs a single command using the runner’s shell
-          # flutter-version: "3.6.0"
-          channel: 'stable'
-          cache : true
-        # Check flutter code quality using analyzer
-      - name: Analyze flutter build
-        run: flutter analyze
-        # Clean cache before build
-      - name: Clean build artifacts
-        run: flutter clean
-        # fetch dependancies
-      - name: Get dependencies
-        run: flutter pub get
         # Build release APK for android using artifact
       - name: Start release build
         run: flutter build web --release
