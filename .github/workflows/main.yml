@@ -46,10 +46,21 @@ jobs :
     # Uses steps to represent a sequence of tasks that will be executed as part of job
     runs-on: macos-14
     needs: flutter-build
-    # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
     steps :
-      # Sets up Java so your job can use it for the Flutter app build
+      # Readies your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses : actions/checkout@v4
+      # Sets up Java so your job can use it for the Flutter app build
+      - uses : actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: "17"
+          cache: 'gradle'
+      # Sets up Flutter using the subosito Flutter workflow
+      - uses: subosito/flutter-action@v2
+        with:
+          # flutter-version: "3.6.0"
+          channel: 'stable'
+          cache : true
         # Decode keystore file
       # - name: Decode Keystore File
       #   run: echo "${{ secrets.KEYSTORE_FILE }}" | base64 --decode > android/app/upload-keystore.jks
@@ -85,8 +96,19 @@ jobs :
     needs: flutter-build
 
     steps :
-        # Sets up Java so your job can use it for the Flutter app build
       - uses : actions/checkout@v4
+        # Sets up Java so your job can use it for the Flutter app build
+      - uses : actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: "17"
+          cache: 'gradle'
+      # Sets up Flutter using the subosito Flutter workflow
+      - uses: subosito/flutter-action@v2
+        with:
+          # flutter-version: "3.6.0"
+          channel: 'stable'
+          cache : true
         # Build release APK for android using artifact
       - name: Start release build
         run: flutter build web --release
