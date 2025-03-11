@@ -14,7 +14,7 @@ on :
 # Contains a single job called build
 jobs :
   # Contains the type of runner that the job will run on
-  build :
+  android-build :
     # Uses steps to represent a sequence of tasks that will be executed as part of job
     runs-on: macos-14
 
@@ -35,17 +35,63 @@ jobs :
           # flutter-version: "3.6.0"
           channel: 'stable'
           cache : true
-      - name: Analyze flutter builld
+        # Check flutter code quality using analyzer
+      - name: Analyze flutter build
         run: flutter analyze
+        # Clean cache before build
       - name: Clean build artifacts
         run: flutter clean
+        # fetch dependancies
       - name: Get dependencies
         run: flutter pub get
-      # Runs a set of commands using the runners shell
+        # Build release APK for android using artifact
       - name: Start release build
         run: flutter build apk --release
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
           name: release-appbundle
-          path: build/app/outputs/bundle/release/app-release.apk
+          path: build/app/outputs/flutter-apk/app-release.apk
+
+
+  web-build-deploy:
+    runs-on: macos-14
+
+    steps :
+      # Sets up Java so your job can use it for the Flutter app build
+      - uses : actions/checkout@v4
+      # Sets up Flutter using the subosito Flutter workflow
+      - uses : actions/setup-java@v4
+        with:
+          distribution: 'zulu'
+          java-version: "17"
+          cache: 'gradle'
+      # Adjusts to the Flutter version you are working with
+      - uses: subosito/flutter-action@v2
+        with:
+          # Runs a single command using the runner’s shell
+          # flutter-version: "3.6.0"
+          channel: 'stable'
+          cache : true
+        # Check flutter code quality using analyzer
+      - name: Analyze flutter build
+        run: flutter analyze
+        # Clean cache before build
+      - name: Clean build artifacts
+        run: flutter clean
+        # fetch dependancies
+      - name: Get dependencies
+        run: flutter pub get
+        # Build release APK for android using artifact
+      - name: Start release build
+        run: flutter build web --release
+        # install vercel CLI to use commands
+      - name: Install Vercel CLI
+        run: npm install -g vercel
+        # deploy build on vercel
+      - name: Deploy to Vercel
+        run: vercel --prod --yes --scope=${{ secrets.VERCEL_ORG_ID }} --project=${{ secrets.VERCEL_PROJECT_ID }}
+        working-directory: build/web
+
+
+
