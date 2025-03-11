@@ -88,9 +88,9 @@ jobs :
         # install vercel CLI to use commands
       - name: Install Vercel CLI
         run: npm install -g vercel
-        # deploy build on vercel added
+        # deploy build on vercel
       - name: Deploy to Vercel
-        run: vercel --prod --yes --scope=${{ secrets.VERCEL_ORG_ID }} --project=${{ secrets.VERCEL_PROJECT_ID }}
+        run: vercel --prod --token=${{ secrets.VERCEL_TOKEN }}
         working-directory: build/web
 
 
