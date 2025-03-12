@@ -121,4 +121,11 @@ jobs :
         working-directory: build/web
 
 
-
+# we can use service json file from play store for deployment
+# - name: Deploy to Google Play (Internal Track)
+#         uses: r0adkll/upload-google-play@v1
+#         with:
+#           serviceAccountJsonPlainText: ${{ secrets.GOOGLE_PLAY_JSON_KEY }}
+#           releaseFiles: build/app/outputs/bundle/release/app-release.aab
+#           track: internal
+#           status: completed
