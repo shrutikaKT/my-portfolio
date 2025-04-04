@@ -186,14 +186,8 @@ class _PortfolioState extends State<Portfolio> with TickerProviderStateMixin {
                                                   _singleProjectAnimationController[
                                                       index],
                                               effects: [
-                                                SlideEffect(
-                                                    duration: 1000.milliseconds,
-                                                    begin: Offset(
-                                                        isOdd(index) ? -1 : 1,
-                                                        0),
-                                                    end: Offset(0, 0)),
                                                 FadeEffect(
-                                                    duration: 1000.milliseconds,
+                                                    duration: 500.milliseconds,
                                                     curve: Curves.elasticIn,
                                                     begin: 0.7,
                                                     end: 1)

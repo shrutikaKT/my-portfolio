@@ -52,7 +52,7 @@ class Constants {
           'The Interview Preparation Application is a revolutionary tool designed to assist job applicants in honing their interview skills. With a focus on leveraging the power of artificial intelligence and tailored question sets, the application offers users an opportunity to practice interview questions, receive feedback, and enhance their confidence during the job application process',
       'tech': ['Flutter', 'RevanueCat', 'LaunchDarkly'],
       'link': 'https://play.google.com/store/apps/details?id=com.whiz.app',
-      'image': 'assets/images/project1.png'
+      'image': 'assets/images/whiz.jpeg'
     },
     {
       'name': 'Devaseva',
@@ -60,7 +60,7 @@ class Constants {
           'Devaseva is one of the most trusted online Puja platforms of India that helps devotees connect with the divine digitally, book online Sevas and get them conducted in a hassle-free manner. You can also enjoy other benefits like you can book seva for your loved ones for blessings, you can watch live telecast, prasad delivery at your doorstep, read interesting news on feeds, donation can be done.',
       'tech': ['Flutter', 'Firebase', 'Web Socket'],
       'link': 'https://play.google.com/store/apps/details?id=com.devaseva.app',
-      'image': 'assets/images/project2.png'
+      'image': 'assets/images/devaseva.jpeg'
     },
     {
       'name': 'Apptmart : E-com product',
@@ -68,7 +68,7 @@ class Constants {
           'This is an e-commerce product by Apptware, designed to make app development easy for e-commerce businesses. Customers can simply request an app, provide some basic details, and the app is automatically generated and ready for publication — all without writing any additional code. The mobile app is fully dynamic, designed, and developed to meet the specific needs of e-commerce businesses.',
       'tech': ['Flutter', 'Payment Gateways', 'Hive'],
       'link': '',
-      'image': 'assets/images/project3.png'
+      'image': 'assets/images/e-comm.jpeg'
     }
   ];
 
